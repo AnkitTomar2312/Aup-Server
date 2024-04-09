@@ -7,9 +7,6 @@ const authRoutes = require("./routes/auth.routes");
 const postRoutes = require("./routes/post.routes");
 
 
-const userModel = require("./modles/user.model");
-const bcrypt = require("bcrypt");
-
 
 const app = express();
 app.use(express.json());
@@ -20,6 +17,7 @@ app.use(
     credentials: true,
   })
 );
+
 app.use("/", userRoutes);
 app.use("/", authRoutes);
 app.use("/", postRoutes);
