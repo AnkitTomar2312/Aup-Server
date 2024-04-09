@@ -2,9 +2,6 @@ const express = require("express");
 const cors = require("cors");
 const mongoose = require("mongoose");
 const Config = require("./config/config");
-const userRoutes = require("./routes/user.routes");
-const authRoutes = require("./routes/auth.routes");
-const postRoutes = require("./routes/post.routes");
 
 
 
@@ -18,15 +15,33 @@ app.use(
   })
 );
 
-app.use("/", userRoutes);
-app.use("/", authRoutes);
-app.use("/", postRoutes);
 
+const userSchema = new mongoose.Schema({
+  username: String,
+  email: String,
+  password: String
+});
 
+// Create a User model based on the schema
+const User = mongoose.model('User', userSchema);
 
-// app.post("/test",(req,res)=>{
-// res.send({result: req.body})
-// })
+// Middleware to parse JSON request bodies
+app.use(express.json());
+
+// Register endpoint
+app.post('/register', async (req, res) => {
+  try {
+    // Create a new user instance
+    const newUser = new User(req.body);
+    // Save the user to the database
+    await newUser.save();
+    res.status(201).json({ message: 'User registered successfully', user: newUser });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: 'Internal server error' });
+  }
+});
+
 
 
 mongoose.set("strictQuery", false);
