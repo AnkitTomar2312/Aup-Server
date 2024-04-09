@@ -18,9 +18,16 @@ app.use(
 app.use("/", userRoutes);
 app.use("/", authRoutes);
 app.use("/", postRoutes);
+
 app.use("/",(req,res)=>{
 res.send({result:"this is dummy data"})
 })
+
+app.get("/test",(req,res)=>{
+res.send({result:"this is dummy data"})
+})
+
+
 mongoose.set("strictQuery", false);
 mongoose
   .connect(Config.mongoURI)
