@@ -23,8 +23,8 @@ app.use("/",(req,res)=>{
 res.send({result:"this is dummy data"})
 })
 
-app.get("/test",(req,res)=>{
-res.send({result:"this is dummy data"})
+app.post("/test",(req,res)=>{
+res.send({result: req.body})
 })
 
 
