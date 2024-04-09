@@ -15,17 +15,15 @@ app.use(
     credentials: true,
   })
 );
-// app.use("/", userRoutes);
-// app.use("/", authRoutes);
-// app.use("/", postRoutes);
+app.use("/", userRoutes);
+app.use("/", authRoutes);
+app.use("/", postRoutes);
 
-// app.use("/",(req,res)=>{
-// res.send({result:"this is dummy data"})
+
+
+// app.post("/test",(req,res)=>{
+// res.send({result: req.body})
 // })
-
-app.post("/test",(req,res)=>{
-res.send({result: req.body})
-})
 
 
 mongoose.set("strictQuery", false);
