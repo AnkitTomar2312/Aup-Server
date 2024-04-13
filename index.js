@@ -7,6 +7,15 @@ const userRoutes=require("./routes/userRoutes")
 const app = express();
 app.use(express.json());
 
+
+app.use(express.urlencoded({ extended: true }));
+app.use(
+  cors({
+    origin: "http://localhost:3000",
+    credentials: true,
+  })
+);
+
 mongoose.set("strictQuery", false);
 mongoose
   .connect(Config.mongoURI)
@@ -17,17 +26,8 @@ mongoose
     console.log(e);
   });
 
-app.use(express.urlencoded({ extended: true }));
-app.use(
-  cors({
-    origin: "http://localhost:3000",
-    credentials: true,
-  })
-);
-app.use("/", userRoutes);
 
-  
-  
+app.use("/", userRoutes);
 
 
 app.listen(Config.PORT, () => {
