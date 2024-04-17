@@ -4,7 +4,7 @@ const mongoose = require("mongoose");
 const Config = require("./config/config");
 const userRoutes = require("./routes/user.routes");
 const authRoutes = require("./routes/auth.routes");
-
+const taskRoutes=require("./routes/task.routes")
 const app = express();
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
@@ -16,6 +16,7 @@ app.use(
 );
 app.use("/", userRoutes);
 app.use("/", authRoutes);
+app.use("/", taskRoutes);
 
 mongoose.set("strictQuery", false);
 mongoose
