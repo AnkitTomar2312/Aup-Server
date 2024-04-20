@@ -20,6 +20,8 @@ const login = async (req, res) => {
           id: data._id,
           email: data.email,
           name: data.name,
+          admin:data.admin,
+          superadmin:data.superadmin
         },
         accessToken: token,
       });

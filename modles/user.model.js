@@ -19,6 +19,14 @@ const UserSchema = new mongoose.Schema({
     data: Buffer,
     contentType: String,
   },
+  admin:{
+    type: Boolean,
+    default:false
+  },
+  superadmin:{
+    type: Boolean,
+    default:false
+  },
 });
 
 module.exports = mongoose.model("User", UserSchema);

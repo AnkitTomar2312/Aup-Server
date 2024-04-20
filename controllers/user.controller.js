@@ -5,7 +5,7 @@
     const { name, email, password, } = req.body;
     const hashedPassword=await bcrypt.hashSync(password,10)
     const user=await userModel.create({
-      name,email,password:hashedPassword
+      name,email,password:hashedPassword,
     })
     if(user){
       res.status(200).json({user_id:user.id})
