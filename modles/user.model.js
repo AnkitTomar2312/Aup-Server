@@ -10,9 +10,6 @@ const UserSchema = new mongoose.Schema({
   password: {
     type: String,
   },
-  about: {
-    type: String,
-  },
   created: {
     type: Date,
     default: Date.now,
@@ -22,8 +19,14 @@ const UserSchema = new mongoose.Schema({
     data: Buffer,
     contentType: String,
   },
-  following: [{ type: mongoose.Schema.ObjectId, ref: "User" }],
-  followers: [{ type: mongoose.Schema.ObjectId, ref: "User" }],
+  admin:{
+    type: Boolean,
+    default:false
+  },
+  superadmin:{
+    type: Boolean,
+    default:false
+  },
 });
 
 module.exports = mongoose.model("User", UserSchema);
